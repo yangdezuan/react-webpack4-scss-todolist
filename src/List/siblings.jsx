@@ -7,6 +7,14 @@ class App extends React.Component {
     super(haha) // 继承调用父类的constructor this.props
     //console.log(this.getState())
   }
+  changeOtherClassName() {
+    let name = ["Guo", "Jack", "Peter", "Pan", "Hu", "Xu", "Hao"]
+    name.sort((i) => (Math.random() > 0.5 ? "-1" : "1"))
+    let arr = {
+      name: name.slice(0, 1),
+    }
+    this.props.getChildname(arr)
+  }
   changeMyClass() {
     let arrList = [
       { id: 1, text: "Guo" },
@@ -33,8 +41,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h3>Siblings class --- {this.props.name}</h3>
+        <h3>组件B Siblings class --- {this.props.name}</h3>
         <button onClick={this.changeMyClass.bind(this)}>随机复制班级</button>
+        <button
+          style={{ marginLeft: "15px" }}
+          onClick={this.changeOtherClassName.bind(this)}
+        >
+          随机改变上面"组件A"的班级名称
+        </button>
         <div>
           {this.props.copylist.map((item, i) => (
             <li key={item.id}>{item.text}</li>

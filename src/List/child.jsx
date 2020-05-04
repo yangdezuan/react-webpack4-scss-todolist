@@ -22,7 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h3>Child List --- {this.props.name}</h3>
+        <h3>组件A Child List --- {this.props.clildname}</h3>
         <button onClick={this.changeMyClass.bind(this)}>切换班级</button>
       </div>
     )

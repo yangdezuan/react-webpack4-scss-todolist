@@ -11,7 +11,8 @@ class App extends React.Component {
     this.state = {
       val: 1,
       myclass: "三(2)班",
-      name: "jack",
+      mySiblingsclass: "三(1)班",
+      clildname: "jack",
       siblingsname: "emily",
       classlist: [
         { id: 1, text: "jack" },
@@ -85,32 +86,51 @@ class App extends React.Component {
       classlist: obj.list,
     })
   }
+  getChildNames(obj) {
+    //把子组件传递过来的值赋给this.state中的属性
+    this.setState({
+      clildname: obj.name,
+    })
+  }
   render() {
     return (
       <div className="list">
-        <Child name={this.state.name} getdata={this.getDatas.bind(this)} />
-        {this.state.classlist.map((item, i) => (
-          <li key={item.id}>
-            {item.text}
-            <a
-              className="i-remove"
-              href="#"
-              onClick={this.Remove.bind(this, i)}
-            >
-              Del
-            </a>
-          </li>
-        ))}
-        <h4>班级:{this.state.myclass}</h4>
-        添加：
-        <input type="text" ref="kw" />
-        <button onClick={this.Add.bind(this, "hello world")}>Add</button>
-        <hr />
-        <Siblings
-          name={this.state.siblingsname}
-          copylist={this.state.classlist}
-          getcopydata={this.getCopyDatas.bind(this)}
-        ></Siblings>
+        <div className="Col leftCol">
+          <Child
+            name={this.state.clildname}
+            getdata={this.getDatas.bind(this)}
+            {...this.state}
+          />
+          {this.state.classlist.map((item, i) => (
+            <li key={item.id}>
+              {item.text}
+              <a
+                className="i-remove"
+                href="#"
+                onClick={this.Remove.bind(this, i)}
+              >
+                Del
+              </a>
+            </li>
+          ))}
+          <h4>班级:{this.state.myclass}</h4>
+          添加：
+          <input type="text" ref="kw" />
+          <button onClick={this.Add.bind(this)}>Add</button>
+          <hr />
+        </div>
+        <div className="Col rightCol">
+          <Siblings
+            name={this.state.siblingsname}
+            copylist={this.state.classlist}
+            getcopydata={this.getCopyDatas.bind(this)}
+            getChildname={this.getChildNames.bind(this)}
+          ></Siblings>
+          <h4>班级:{this.state.mySiblingsclass}</h4>
+          <input type="text" ref="kw" />
+          <button onClick={this.Add.bind(this)}>Add</button>
+          <hr />
+        </div>
       </div>
     )
   }

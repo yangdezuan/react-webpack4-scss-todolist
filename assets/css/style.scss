@@ -9,11 +9,16 @@ body {
     margin-bottom: 15px;
   }
   .list {
+    display: flex;
     li {
       padding-bottom: 5px;
       .i-remove {
         margin-left: 5px;
       }
     }
+  }
+  .Col {
+    flex: 1;
+    min-width: 350px;
   }
 }
