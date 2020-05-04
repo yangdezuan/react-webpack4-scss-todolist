@@ -9,7 +9,9 @@ class App extends React.Component {
 
     this.state = {
       val: 1,
-      goods: [
+      myclass: "三(2)班",
+      name: "jack",
+      classlist: [
         { id: 1, text: "jack" },
         { id: 2, text: "peter" },
         { id: 3, text: "emily" },
@@ -41,10 +43,10 @@ class App extends React.Component {
     }, 0)
   }
   Remove(id) {
-    let goods = this.state.goods
-    this.state.goods.splice(id, 1)
+    let classlist = this.state.classlist
+    this.state.classlist.splice(id, 1)
     this.setState({
-      goods: goods,
+      classlist: classlist,
     })
   }
   Add(param, event) {
@@ -52,21 +54,29 @@ class App extends React.Component {
     let kw = Dom_kw.value
     Dom_kw.focus()
     console.log(kw)
-    this.state.goods.push({
-      id: this.state.goods.length + 1,
+    this.state.classlist.push({
+      id: this.state.classlist.length + 1,
       text: kw,
     })
     this.setState({
-      goods: this.state.goods,
+      classlist: this.state.classlist,
     })
     console.log(this.getState)
     Dom_kw.value = ""
   }
+  //用于接收子组件的传值方法，参数为子组件传递过来的值
+  getDatas(obj) {
+    //把子组件传递过来的值赋给this.state中的属性
+    this.setState({
+      myclass: obj.name,
+      classlist: obj.list,
+    })
+  }
   render() {
     return (
       <div className="list">
-        <Child />
-        {this.state.goods.map((item, i) => (
+        <Child name={this.state.name} getdata={this.getDatas.bind(this)} />
+        {this.state.classlist.map((item, i) => (
           <li key={item.id}>
             {item.text}
             <a
@@ -78,6 +88,7 @@ class App extends React.Component {
             </a>
           </li>
         ))}
+        <h4>班级:{this.state.myclass}</h4>
         添加：
         <input type="text" ref="kw" />
         <button onClick={this.Add.bind(this, "hello world")}>Add</button>

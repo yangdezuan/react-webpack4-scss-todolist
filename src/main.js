@@ -14,7 +14,7 @@ class Welcome extends React.Component {
   render() {
     return (
       <div>
-        <h2>Title</h2>
+        <h2>班级 </h2>
         <div className={`check-radio ${1 ? "active" : null}`}> Welcome to learn reactjs</div>
       </div>
     )
@@ -26,11 +26,11 @@ import Input from './components/input.jsx';
 //console.log(this.getState())
 ReactDOM.render(
   <div>
-    <h2>Title</h2>
+    <h2>班级react 学习班</h2>
     <App></App>
     <List></List>
-    <Input placeholder="请输入" type="text" name="test" />
   </div>, // HelloMessage||App
+  //<Input placeholder="请输入" type="text" name="test" />
   document.getElementById('app')
 );
 //import App from './App.jsx';
