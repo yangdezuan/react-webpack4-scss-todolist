@@ -7,7 +7,7 @@ class App extends React.Component {
     console.log("**test haha**", this.haha, haha == this.props)
 
     this.state = {
-      name: "jack1",
+      name: "jack yang",
     }
     //console.log(this.getState())
   }
@@ -17,7 +17,7 @@ class App extends React.Component {
         Hello
         <span className="hl">{this.state.name}!!!</span>
         <br />
-        欢迎来到react js教程学习33！！！
+        欢迎来到react js教程学习！！！
       </div>
     )
   }

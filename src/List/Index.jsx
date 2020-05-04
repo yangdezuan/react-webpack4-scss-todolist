@@ -1,6 +1,7 @@
 import React from "react"
 import style from "../../assets/css/style.scss"
 import Child from "./child.jsx"
+import Siblings from "./siblings.jsx"
 class App extends React.Component {
   // state初始化一般写在构造器当中
   constructor(haha) {
@@ -11,6 +12,7 @@ class App extends React.Component {
       val: 1,
       myclass: "三(2)班",
       name: "jack",
+      siblingsname: "emily",
       classlist: [
         { id: 1, text: "jack" },
         { id: 2, text: "peter" },
@@ -52,7 +54,11 @@ class App extends React.Component {
   Add(param, event) {
     let Dom_kw = this.refs.kw
     let kw = Dom_kw.value
-    Dom_kw.focus()
+    if (kw == "") {
+      alert("请输入内容")
+      Dom_kw.focus()
+      return
+    }
     console.log(kw)
     this.state.classlist.push({
       id: this.state.classlist.length + 1,
@@ -69,6 +75,13 @@ class App extends React.Component {
     //把子组件传递过来的值赋给this.state中的属性
     this.setState({
       myclass: obj.name,
+      classlist: obj.list,
+    })
+  }
+  //用于接收子组件的传值方法，参数为子组件传递过来的值
+  getCopyDatas(obj) {
+    //把子组件传递过来的值赋给this.state中的属性
+    this.setState({
       classlist: obj.list,
     })
   }
@@ -92,6 +105,12 @@ class App extends React.Component {
         添加：
         <input type="text" ref="kw" />
         <button onClick={this.Add.bind(this, "hello world")}>Add</button>
+        <hr />
+        <Siblings
+          name={this.state.siblingsname}
+          copylist={this.state.classlist}
+          getcopydata={this.getCopyDatas.bind(this)}
+        ></Siblings>
       </div>
     )
   }
