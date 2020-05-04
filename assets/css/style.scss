@@ -1,0 +1,19 @@
+body {
+  background: #fff;
+  .hl {
+    color: #f30;
+    font-size: 26px;
+    font-weight: 700;
+  }
+  .box {
+    margin-bottom: 15px;
+  }
+  .list {
+    li {
+      padding-bottom: 5px;
+      .i-remove {
+        margin-left: 5px;
+      }
+    }
+  }
+}
